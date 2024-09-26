@@ -1,5 +1,6 @@
 import pg from 'pg'
 
+
 const { Pool } = pg;
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -7,6 +8,7 @@ const pool = new Pool({
 
 export async function addMessage(message : string) {
     await pool.query(`INSERT INTO messages (message) VALUES ('${message}')`);
+
 
 }
 

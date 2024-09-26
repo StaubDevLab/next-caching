@@ -1,11 +1,9 @@
 import {ReactNode} from "react";
+import {unstable_noStore} from "next/cache";
 
 export default async function MessagesLayout({ children }: { children: ReactNode }) {
-    const response = await fetch('http://next-caching-backend:8080/messages', {
-        headers: {
-            'X-ID': 'layout',
-        },
-    });
+    unstable_noStore()
+    const response = await fetch('http://next-caching-backend:8080/messages');
     const messages = await response.json();
     const totalMessages = messages.length;
 
